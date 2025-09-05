@@ -9,13 +9,15 @@ interface QuizResultsProps {
   answers: AnswerRecord[]
   score: number
   totalQuestions: number
+  onRetry?: () => void
 }
 
 export default function QuizResults({ 
   quiz, 
   answers, 
   score, 
-  totalQuestions 
+  totalQuestions,
+  onRetry
 }: QuizResultsProps) {
   const router = useRouter()
   const correctAnswers = answers.filter(a => a.is_correct).length
@@ -26,6 +28,15 @@ export default function QuizResults({
     if (score >= 90) return 'text-success'
     if (score >= 70) return 'text-warning'
     return 'text-error'
+  }
+
+  const handleRetry = () => {
+    if (onRetry) {
+      onRetry()
+    } else {
+      // Fallback to reload if no onRetry handler provided
+      window.location.reload()
+    }
   }
 
   return (
@@ -93,7 +104,7 @@ export default function QuizResults({
         {/* Action Buttons */}
         <div className="flex gap-4 mt-8">
           <button
-            onClick={() => window.location.reload()}
+            onClick={handleRetry}
             className="flex-1 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-colors flex items-center justify-center gap-2"
           >
             <RotateCcw className="w-5 h-5" />

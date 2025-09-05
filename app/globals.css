@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: 17 88% 54%;
+    --primary-dark: 15 82% 50%;
+    --primary-light: 15 100% 62%;
+    --secondary: 195 100% 20%;
+    --secondary-dark: 195 100% 15%;
+    --secondary-light: 195 100% 27%;
+    --accent: 39 100% 64%;
+    --accent-dark: 37 87% 55%;
+    --accent-light: 39 100% 73%;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .quiz-card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6 cursor-pointer transform hover:-translate-y-1;
+  }
+  
+  .question-option {
+    @apply w-full p-4 text-left bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors duration-200 border-2 border-transparent hover:border-primary;
+  }
+  
+  .question-option.selected {
+    @apply bg-primary text-white border-primary;
+  }
+  
+  .question-option.correct {
+    @apply bg-success text-white border-success;
+  }
+  
+  .question-option.incorrect {
+    @apply bg-error text-white border-error;
+  }
+  
+  .timer-warning {
+    @apply text-warning animate-pulse;
+  }
+  
+  .achievement-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-accent text-gray-900;
+  }
+}
+
+@layer utilities {
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}

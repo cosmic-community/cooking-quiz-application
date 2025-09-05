@@ -6,8 +6,7 @@ import type {
   User, 
   Category, 
   Achievement,
-  CosmicResponse,
-  hasStatus
+  CosmicResponse
 } from '@/types';
 
 // Initialize Cosmic client
